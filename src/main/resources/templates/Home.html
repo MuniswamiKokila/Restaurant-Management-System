@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Your Restaurant</title>
+    <style>
+.navigation {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navigation a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navigation a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+.navigation a.active {
+  background-color: #ff656c;
+  color: white;
+}</style>
+</head>
+<body style="background-color:powderblue;">
+
+<div class="navigation">
+    <a class="active" href="/">Home</a>
+    <a href="/login" style="float:right">Login</a>
+    <a href="/adminLogin" style="float:right">AdminLogin</a>
+    <a href="/register" style="float:right">Register</a>
+</div>
+<div >
+    <marquee><h2>Welcome to Your Restaurant</h2></marquee>
+</div>
+
+
+</body>
+</html>
