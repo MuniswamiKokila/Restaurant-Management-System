@@ -9,7 +9,6 @@ public class BookedTables {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(unique = true)
     private String tables;
     private Double tablePrice;
     @JsonIgnore

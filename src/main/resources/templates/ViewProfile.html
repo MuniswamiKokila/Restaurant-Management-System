@@ -3,41 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>View Profile</title>
+    <style>
+        .navigation {
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+    z-index:1;
+    top:0;
+    left:0;
+}
+
+.navigation a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navigation a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+.navigation a.active {
+  background-color: #ff656c;
+  color: white;
+  }table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    </style>
 </head>
 <body>
 <div class="navigation">
-    <a th:href="@{/restaurant}">Home</a>
-    <a href="#" class="active" style="float:right">View Profile</a>
+    <a href="/restaurant">Home</a>
+    <a th:href="@{/viewProfile}" class="active">View Profile</a>
     <a href="/" style="float:right">Logout</a>
-    <!--    <a class="nav-link" th:href="@{/{userName}/cart (userName=${userName})}"><span> My Cart </span></a>-->
+    <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
-    <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+    <a href="#" style="float:right" th:text="${userName}"></a>
 </div>
 
 <div>
-    <h3 align="center"><span th:text=" ${message}"/></h3>
-    <h1>Welcome &nbsp;<span th:text="${name}"/></h1>
-    <div class="px-4 mt-1">
-        <h3> Full Name: &nbsp;<span th:text="${name}"/> </h3>
-    </div>
-    <div>
-        <h3> User Name: &nbsp;<span th:text="${userName}"/> </h3>
-    </div>
-    <div>
-        <h3> Address: &nbsp;<span th:text="${address}"/> </h3>
-    </div>
-    <div>
-        <h3> Email Id: &nbsp;<span th:text="${email}"/> </h3>
-    </div>
-    <div>
-        <h3> Mobile Number: &nbsp;<span th:text="${mobileNumber}"/> </h3>
-    </div>
-    <div>
-       <button> <a th:href="@{/updateProfile}" class="btn">Update details</a></button>
-    </div>
-    <div>
+<h3 align="center"><span th:text=" ${message}"/></h3>
+<h1>Welcome &nbsp;<span th:text="${name}"/></h1>
+</div>
+    <table>
+
+        <tbody>
+            <tr>
+                <td><b>Name</b></td>
+                <td><span th:text="${name}"/> </td>
+            </tr>
+            <tr>
+                <td><b>UserName</b></td>
+                <td><span th:text="${userName}"/></td>
+            </tr>
+            <tr>
+                <td><b>Address</b></td>
+                <td><span th:text="${address}"/></td>
+            </tr>
+            <tr>
+                <td><b>Email</b></td>
+                <td><span th:text="${email}"/></td>
+            </tr>
+            <tr>
+                <td><b>Mobile Number</b></td>
+                <td><span th:text="${mobileNumber}"/></td>
+            </tr>
+        </tbody>
+    </table>
+<div>
+    <button> <a th:href="@{/updateProfile}" class="btn">Update details</a></button>
+</div>
+<div>
     <button><a href="@{/restaurant}">Cancel</a></button>
-    </div>
 </div>
 </body>
 </html>

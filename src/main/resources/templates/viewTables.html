@@ -50,10 +50,9 @@ tr:nth-child(even) {
 </head>
 <body>
 <div class="navigation">
-    <a href="/adminRestaurant" class="active">Home</a>
+    <a href="/adminRestaurant">Home</a>
     <a href="/viewDineIn">ViewDineIn</a>
     <a href="/viewMenu">Deliver</a>
-    <a th:href="@{/viewUsersAccount}">Accounts</a>
     <a class="active" href="#" style="float:right" th:text="${userName}"></a>
     <a href="/" style="float:right">Logout</a>
 </div>
@@ -65,6 +64,7 @@ tr:nth-child(even) {
     <tr>
         <th>Table</th>
         <th>Price</th>
+        <th>Delete</th>
     </tr>
     </thead>
 
@@ -72,6 +72,9 @@ tr:nth-child(even) {
     <tr th:each="tables: ${adminTable}">
         <td th:text="${tables.tables}"></td>
         <td th:text="${tables.price}"></td>
+        <td>
+            <a href="" th:href="@{/viewTables/delete/{id} (id=${tables.id})}" >Delete</a></td>
+        </td>
     </tr>
     </tbody>
 </table>

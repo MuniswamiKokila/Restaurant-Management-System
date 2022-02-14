@@ -137,6 +137,9 @@
         <a href="/adminLogin" style="float:right">AdminLogin</a>
         <a class="active" href="/register" style="float:right">Register</a>
     </div>
+    <br/>
+    <h6 style="font-size:20px;color:red;text-align:center"><small><span th:text="${error}"></span></small></h6>
+    <br/>
     <div class="logo"></div>
     <form action="/register" method="post">
     <div class="login-block">
@@ -144,7 +147,7 @@
         <input type="text" placeholder="Enter Username" name="userName" required/>
         <input type="text" placeholder="Enter Full Name" name="name" required/>
         <input type="password" placeholder="Enter Password" name="password" required/>
-        <input type="number" placeholder="Enter Mobile Number" name="mobileNumber" pattern="^\d{10}$" required/>
+        <input type="text" placeholder="Enter Mobile Number" name="mobileNumber" pattern="^\d{10}$" required="required"/>
         <input type="email" placeholder="Enter Email" name="email" required/>
         <input type="text" placeholder="Enter Address" name="address" required/>
         <button>Register</button>

@@ -11,7 +11,6 @@ public class DineInShows {
     @Id
     @GeneratedValue
     public Long id;
-    @Column(unique = true)
     public Time time;
     @JsonIgnore
     @ManyToOne

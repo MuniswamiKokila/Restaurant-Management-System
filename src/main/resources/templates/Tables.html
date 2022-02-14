@@ -35,12 +35,12 @@
 </head>
 <div class="container">
     <div class="navigation">
-        <a href="#" class="active">Home</a>
-        <a th:href="@{/updateCustomerProfile}">Update Profile</a>
+        <a href="/restaurant">Home</a>
+        <a th:href="@{/viewProfile}">View Profile</a>
         <a href="/" style="float:right">Logout</a>
         <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
         <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
-        <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+        <a href="#" class="active" style="float:right" th:text="${userName}"></a>
     </div>
 
     <center><h2>Restaurant</h2></center>
@@ -164,13 +164,13 @@ document.querySelectorAll("input[type=checkbox]").forEach(function(input)
 
 document.getElementById("bookTable").addEventListener("click",bookTables)
 </script>
-<script type="text/javascript" th:inline="javascript">
-    /*<![CDATA[*/
-    var theList = [[${tables}]]
-    for (i = 0; i < theList.length; i++) {
-        document.getElementById(theList[i]).disabled=true;
-    }
-    /*]]>*/
-</script>
+<!--<script type="text/javascript" th:inline="javascript">-->
+<!--    /*<![CDATA[*/-->
+<!--    var theList = [[${tables}]]-->
+<!--    for (i = 0; i < theList.length; i++) {-->
+<!--        document.getElementById(theList[i]).disabled=true;-->
+<!--    }-->
+<!--    /*]]>*/-->
+<!--</script>-->
 </body>
 </html>

@@ -50,12 +50,12 @@ tr:nth-child(even) {
 </head>
 <body>
 <div class="navigation">
-    <a href="#" class="active">Home</a>
-    <a th:href="@{/updateCustomerProfile}">Update Profile</a>
+    <a href="/restaurant" >Home</a>
+    <a th:href="@{/viewProfile}">View Profile</a>
     <a href="/" style="float:right">Logout</a>
-    <!--    <a class="nav-link" th:href="@{/{userName}/cart (userName=${userName})}"><span> My Cart </span></a>-->
+    <a class="active" th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
-    <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+    <a href="#" style="float:right" th:text="${userName}"></a>
 </div>
 <br/>
 <div>

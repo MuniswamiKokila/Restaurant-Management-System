@@ -3,8 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Pay</title>
+    <style>
+        .navigation {
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+    z-index:1;
+    top:0;
+    left:0;
+}
+
+.navigation a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navigation a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+.navigation a.active {
+  background-color: #ff656c;
+  color: white;
+  }
+    </style>
 </head>
 <body>
+<div class="navigation">
+    <a href="/restaurant">Home</a>
+    <a th:href="@{/viewProfile}">View Profile</a>
+    <a href="/" style="float:right">Logout</a>
+    <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
+    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
+    <a href="#" class="active" style="float:right" th:text="${userName}"></a>
+</div>
 <span>Paid Successfully</span>
 </body>
 </html>

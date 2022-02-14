@@ -34,23 +34,6 @@ public class AdminController {
         }
         return "adminRestaurant";
     }
-    @GetMapping("/viewUsersAccount")
-    public String viewUsersAccount(Principal principal, Model model){
-        if (principal != null) {
-            String username = principal.getName();
-            model.addAttribute("userName", username);
-        }
-        List<Customer> usersList=customerService.listAllCustomers();
-        ArrayList<Customer> customerArrayList=new ArrayList<>();
-        for(Customer user:usersList){
-            if(!(user.getUserName().equals("admin"))){
-                customerArrayList.add(user);
-            }
-        }
-        model.addAttribute("customer",customerArrayList);
-        return "viewAccounts";
-    }
-
 
 
 //    ADMIN DINEIN PART
@@ -171,11 +154,21 @@ public class AdminController {
             model.addAttribute("userName", username);
         }
         dineInShowsService.removeDineInTimeById(id);
-        dineInService.removeDineInById(id);
-        return "redirect:/viewDineInTime";
+//        dineInService.removeDineInById(id);
+        return "redirect:/viewDineIn";
     }
 
-
+    @GetMapping("/viewTables/delete/{id}")
+    public String deleteTable(Principal principal,Model model,@PathVariable Long id){
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+        tablesService.removeTablesById(id);
+//        dineInShowsService.removeDineInTimeById(id);
+//        dineInService.removeDineInById(id);
+        return "redirect:/viewDineIn";
+    }
 
 
 

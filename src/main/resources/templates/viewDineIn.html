@@ -49,11 +49,10 @@ tr:nth-child(even) {
     </style>
 </head>
 <div class="navigation">
-    <a href="/adminRestaurant" class="active">Home</a>
-    <a href="/viewDineIn">ViewDineIn</a>
+    <a href="/adminRestaurant">Home</a>
+    <a class="active" href="/viewDineIn">ViewDineIn</a>
     <a href="/viewMenu">Deliver</a>
-    <a th:href="@{/viewUsersAccount}">Accounts</a>
-    <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+    <a href="#" style="float:right" th:text="${userName}"></a>
     <a href="/" style="float:right">Logout</a>
 </div>
 <br/>

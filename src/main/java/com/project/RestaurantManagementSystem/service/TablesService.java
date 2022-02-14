@@ -11,8 +11,8 @@ import java.util.List;
 public class TablesService {
     @Autowired
     private TablesRepository tablesRepository;
-    public Tables getBySeats(String tables){
-        return tablesRepository.getByTables(tables);
+    public Tables getBySeats(String table){
+        return tablesRepository.getByTables(table);
     }
 
     public List<Tables> showDetails(Long id) {
@@ -27,5 +27,8 @@ public class TablesService {
 //    }
     public Tables getById(Long id){
         return tablesRepository.getById(id);
+    }
+    public void removeTablesById(Long id) {
+        tablesRepository.deleteById(id);
     }
 }

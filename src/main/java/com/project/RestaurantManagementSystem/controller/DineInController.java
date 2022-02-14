@@ -66,7 +66,7 @@ public class DineInController {
     }
 
 
-    @GetMapping("/{userName}/booked/{shows}")
+    @RequestMapping("/{userName}/booked/{shows}")
     public String booked(Principal principal,@PathVariable String userName,@PathVariable Long shows,Model model){
         if (principal != null) {
             String username = principal.getName();
@@ -76,6 +76,7 @@ public class DineInController {
         model.addAttribute("shows",shows);
         return "booked";
     }
+
 
     @PostMapping("/{userName}/booked/{shows}")
     public String tableBooked(Principal principal,@PathVariable String userName,@PathVariable Long shows, HttpServletRequest request, Model model){
@@ -97,18 +98,18 @@ public class DineInController {
             BookedTables bookedTables=new BookedTables(tables.getTables(),tables.getPrice());
             bookedTables.setDineInShows(dineInShowsService.getById(shows));
             bookedTables.setCustomer(customerService.findCustomerByUserName(userName));
-            bookedTableService.saveTable(bookedTables);
             model.addAttribute("name",bookedTables.getCustomer().getName());
             model.addAttribute("date",bookedTables.getDineInShows().getDineIn().getDate());
             model.addAttribute("time",bookedTables.getDineInShows().getTime());
             model.addAttribute("tables",bookedTable);
             model.addAttribute("price", Arrays.stream(bookedTable).count()*150);
+            bookedTableService.saveTable(bookedTables);
             model.addAttribute("message","Table booked successfully... You can see your bookings here...");
         }
         return "booked";
     }
 
-    @GetMapping("/{userName}/myBookings")
+    @RequestMapping("/{userName}/myBookings")
     public String myBookings(Principal principal,@PathVariable String userName, Model model){
         if (principal != null) {
             String username = principal.getName();

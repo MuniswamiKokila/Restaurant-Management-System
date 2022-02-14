@@ -10,11 +10,11 @@ public class Customer {
     private String userName;
     @Column(nullable = false)
     private String name;
-    @Column(unique = true)
+    @Column(nullable = false)
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(unique = true)
+    @Column(nullable = false)
     private Long mobileNumber;
     @Column(nullable = false)
     private String address;

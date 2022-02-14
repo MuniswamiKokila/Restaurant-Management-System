@@ -45,15 +45,14 @@ public class CustomerController {
         }
         if(!customerService.existsById(userName)){
             customerService.save(customer);
+            model.addAttribute("message", "Successfully registered!!!!!!");
         }
         else
         {
             model.addAttribute("error","This username is already taken... Please choose another one !!!");
             return "register";
         }
-        model.addAttribute("message", "Successfully registered!!!!!!");
         return "login";
-
     }
     @RequestMapping("/login")
     public String login(){
