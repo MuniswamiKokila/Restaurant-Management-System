@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Login</title>
+    <title>Update Details</title>
     <style>
-.navigation {
+      .navigation {
   overflow: hidden;
   background-color: #333;
+  width:100%;
+    z-index:1;
+    top:0;
+    left:0;
 }
 
 .navigation a {
@@ -27,25 +31,7 @@
   background-color: #ff656c;
   color: white;
   }
-
-body {
-    background-image: url('food.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: Montserrat;
-}
-
-.logo {
-    width:100px;
-    height:140px;
-    background-image: url('logo.png');
-    background-size:100px;
-    background-repeat: no-repeat;
-    margin: 30px auto;
-}
-
-.login-block {
+        .login-block {
     width: 320px;
     padding: 20px;
     background: #fff;
@@ -121,26 +107,39 @@ body {
 .login-block button:hover {
     background: #ff7b81;
 }
-
     </style>
 </head>
 <body>
 <div class="navigation">
-    <a href="/">Home</a>
-    <a href="/login" style="float:right">Login</a>
-    <a class="active" href="/adminLogin" style="float:right">AdminLogin</a>
-    <a href="/register" style="float:right">Register</a>
+    <a th:href="@{/restaurant}">Home</a>
+    <a href="#" class="active" style="float:right">View Profile</a>
+    <a href="/" style="float:right">Logout</a>
+    <!--    <a class="nav-link" th:href="@{/{userName}/cart (userName=${userName})}"><span> My Cart </span></a>-->
+    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
 </div>
-<h6 style="font-size:20px;color:red;text-align:center"><small><span th:text="${message}"></span></small></h6>
-<div class="logo"></div>
-<form action="/adminRestaurant" method="post">
-    <div class="login-block">
-        <h1>Admin Login</h1>
-        <input type="text"  placeholder="Enter Admin name" name="adminName" />
-        <input type="password" placeholder="Enter Password" name="adminPassword" />
-        <button>Login</button>
-        <button type="button" class="cancelButton" onclick="window.location.href='/'">Cancel</button><br/><br/>
-    </div>
-</form>
+<br/>
+
+    <h1>Update Details</h1><br/>
+
+    <form action="/updateProfile" method="post">
+        <div class="login-block">
+            <h1>Update Details</h1>
+            <label><b>UserName</b></label><br>
+            <input type="text" placeholder="Enter Username" name="userName" th:value="${customer.userName}" readonly/>
+            <label><b>Name</b></label>
+            <input type="text" placeholder="Enter Full Name" name="name" th:value="${customer.name}"><br><br>
+            <label><b>Password</b></label><br>
+            <input type="password" placeholder="Enter Password" name="password" th:value="${customer.Password}" />
+            <label><b>Email</b></label><br>
+            <input type="email" placeholder="Email" name="email" th:value="${customer.email}" readonly/>
+            <label><b>Mobile Number</b></label><br>
+            <input type="number" placeholder="Enter Mobile Number" name="mobileNumber" th:value="${customer.mobileNumber}"/>
+            <label><b>Address</b></label><br>
+            <input type="text" placeholder="Enter Address" name="address" th:value="${customer.address}">
+            <button>Update</button>
+            <input type="reset" value="Reset" align="center">
+<!--            <button type="button" class="cancelButton" onclick="/restaurant">Cancel</button><br/><br/>-->
+        </div>
+    </form>
 </body>
 </html>

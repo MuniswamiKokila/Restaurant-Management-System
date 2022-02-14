@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <style>
+          .navigation {
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+    z-index:1;
+    top:0;
+    left:0;
+}
+
+.navigation a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navigation a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+.navigation a.active {
+  background-color: #ff656c;
+  color: white;
+  }
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    </style>
+</head>
+<body>
+<div class="navigation">
+    <a href="#" class="active">Home</a>
+    <a th:href="@{/updateCustomerProfile}">Update Profile</a>
+    <a href="/" style="float:right">Logout</a>
+    <!--    <a class="nav-link" th:href="@{/{userName}/cart (userName=${userName})}"><span> My Cart </span></a>-->
+    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
+    <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+    <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
+</div>
+<br/>
+<span th:text="${message}"/>
+
+<div>
+    <h1>Menu List</h1>
+</div>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Dish Name</th>
+            <th scope="col">Dish Address</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="food: ${usermenu}">
+            <td th:text="${food.name}"></td>
+            <td th:text="${food.price}"></td>
+            <td>
+                <a th:href="@{/{userName}/added/{id} (userName=${userName},id=${food.id})}" class="btn btn-success">Add To Cart</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table><br><br>
+</div>
+
+</body>
+</html>

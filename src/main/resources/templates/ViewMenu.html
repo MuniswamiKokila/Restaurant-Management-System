@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Menu</title>
+    <style>
+        .navigation {
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+    z-index:1;
+    top:0;
+    left:0;
+}
+
+.navigation a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navigation a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+.navigation a.active {
+  background-color: #ff656c;
+  color: white;
+  }
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    </style>
+</head>
+<body>
+<div class="navigation">
+    <a href="/adminRestaurant">Home</a>
+    <a href="/viewDineIn">ViewDineIn</a>
+    <a href="/viewMenu" class="active">Deliver</a>
+    <a href="/viewAccounts">Accounts</a>
+    <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+    <a href="/" style="float:right">Logout</a>
+</div>
+<br/>
+<div>
+<h1>Menu List</h1>
+</div>
+<span th:text="${message}"/>
+<table>
+    <thead>
+    <tr>
+        <!--            <th scope="col">Hotel Id</th>-->
+        <th>Dish Name</th>
+        <th>Dish Address</th>
+        <th>Delete</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="food: ${adminmenu}">
+        <!--            <td th:text="${hotel.id}"></td>-->
+        <td th:text="${food.name}"></td>
+        <td th:text="${food.price}"></td>
+        <td><a href="" th:href="@{/viewMenu/delete/{id} (id=${food.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+     <a th:href="@{/updateMenu/add }">Add Menu</a>
+</div>
+
+</body>
+</html>

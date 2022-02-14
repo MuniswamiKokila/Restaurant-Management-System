@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Restaurant</title>
+    <title>View Tables</title>
     <style>
          .navigation {
   overflow: hidden;
@@ -31,6 +31,21 @@
   background-color: #ff656c;
   color: white;
   }
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
     </style>
 </head>
 <body>
@@ -41,11 +56,31 @@
     <a th:href="@{/viewUsersAccount}">Accounts</a>
     <a class="active" href="#" style="float:right" th:text="${userName}"></a>
     <a href="/" style="float:right">Logout</a>
-</div><br><br><br>
-<marquee direction="right"
-         behavior="alternate"
-         style="color:red">
-    <h1>WELCOME BACK ADMIN </h1></marquee>
+</div>
+<div>
+    <h3>DineIn Tables for <span th:text="${dineInShows.time}"></span></h3>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>Table</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tables: ${adminTable}">
+        <td th:text="${tables.tables}"></td>
+        <td th:text="${tables.price}"></td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<div>
+    <a th:href="@{/addTables/{id} (id=${dineInShows.id})}">Add Table</a>
+</div>
+<div>
+    <button><a th:href="@{/viewDineIn}">Back</a></button>
 </div>
 </body>
 </html>

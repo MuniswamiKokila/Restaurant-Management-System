@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tables</title>
+    <style>
+          .navigation {
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+    z-index:1;
+    top:0;
+    left:0;
+}
+
+.navigation a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navigation a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+.navigation a.active {
+  background-color: #ff656c;
+  color: white;
+  }
+    </style>
+</head>
+<div class="container">
+    <div class="navigation">
+        <a href="#" class="active">Home</a>
+        <a th:href="@{/updateCustomerProfile}">Update Profile</a>
+        <a href="/" style="float:right">Logout</a>
+        <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
+        <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
+        <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+    </div>
+
+    <center><h2>Restaurant</h2></center>
+    <h4>Please select a Table</h4>
+
+    <div><span th:text="${message}"/></div>
+
+    <center>
+        <div>
+            <table style="text-size:15px">
+
+                <tbody>
+                <tr>
+                    <td>A</td>
+                    <td>
+                        <input type="checkbox" id="1A" name="table"/>
+                        <label for="1A">1A</label>
+
+                        <input type="checkbox" id="2A" name="table"/>
+                        <label for="2A">2A</label>
+
+                        <input type="checkbox" id="3A" name="table"/>
+                        <label for="3A">3A</label>
+
+                        <input type="checkbox" id="4A" name="table"/>
+                        <label for="4A">4A</label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>
+
+                        <input type="checkbox" id="1B" name="table"/>
+                        <label for="1B">1B</label>
+
+                        <input type="checkbox" id="2B" name="table"/>
+                        <label for="2B">2B</label>
+
+                        <input type="checkbox" id="3B" name="table"/>
+                        <label for="3B">3B</label>
+
+                        <input type="checkbox" id="4B" name="table"/>
+                        <label for="4B">4B</label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>
+                        <input type="checkbox" id="1C" name="table"/>
+                        <label for="1C">1C</label>
+
+                        <input type="checkbox" id="2C" name="table"/>
+                        <label for="2C">2C</label>
+
+                        <input type="checkbox" id="3C" name="table"/>
+                        <label for="3C">3C</label>
+
+                        <input type="checkbox" id="4C" name="table"/>
+                        <label for="4C">4C</label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>
+                        <input type="checkbox" id="1D" name="table"/>
+                        <label for="1D">1D</label>
+
+                        <input type="checkbox" id="2D" name="table"/>
+                        <label for="2D">2D</label>
+
+                        <input type="checkbox" id="3D" name="table"/>
+                        <label for="3D">3D</label>
+
+                        <input type="checkbox" id="4D" name="table"/>
+                        <label for="4D">4D</label>
+
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+            <button id="bookTable">Pay <span id="amount"></span></button>
+        </div>
+
+        <form th:action="@{/{userName}/booked/{id} (userName=${userName},id=${shows})}" method="post" style="display:none">
+            <input type="text" id="bookedTables" name="bookedTables"/>
+            <button type="submit" id="formSubmitButton">Book</button>
+        </form>
+    </center>
+</div>
+
+<script>
+function bookTables() {
+    let inputs = document.querySelectorAll("input[type=checkbox]")
+
+    for(let i =0; i< inputs.length; i++){
+        if(inputs[i].checked){
+            document.getElementById("bookedTables").value += inputs[i].id + ","
+        }
+    }
+    document.getElementById("formSubmitButton").click()
+}
+function price() {
+    let inputs = document.querySelectorAll("input[type=checkbox]")
+    let price = 150
+    let count = 0
+    for(let i =0; i< inputs.length; i++){
+        if(inputs[i].checked){
+            count++
+        }
+    }
+   document.getElementById("amount").innerHTML = price*count
+}
+
+document.querySelectorAll("input[type=checkbox]").forEach(function(input)
+{ input.addEventListener("click", price) }
+)
+
+document.getElementById("bookTable").addEventListener("click",bookTables)
+</script>
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    var theList = [[${tables}]]
+    for (i = 0; i < theList.length; i++) {
+        document.getElementById(theList[i]).disabled=true;
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

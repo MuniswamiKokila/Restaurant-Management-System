@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Restaurant</title>
+    <title>Update Time</title>
     <style>
          .navigation {
   overflow: hidden;
@@ -34,6 +34,7 @@
     </style>
 </head>
 <body>
+
 <div class="navigation">
     <a href="/adminRestaurant" class="active">Home</a>
     <a href="/viewDineIn">ViewDineIn</a>
@@ -41,11 +42,18 @@
     <a th:href="@{/viewUsersAccount}">Accounts</a>
     <a class="active" href="#" style="float:right" th:text="${userName}"></a>
     <a href="/" style="float:right">Logout</a>
-</div><br><br><br>
-<marquee direction="right"
-         behavior="alternate"
-         style="color:red">
-    <h1>WELCOME BACK ADMIN </h1></marquee>
+</div>
+<br/>
+<div>
+  <form method="post" th:object="${shows}">
+
+    <div class="form-group">
+      <Label>Enter a Time</Label>
+          <input type="time" step="2" th:field="*{time}" name="time" required/>
+      <input type="hidden" th:name="dineIn"  th:value="${dineInShows}">
+    </div>
+    <button type="submit" class="addbtn" >ADD</button>
+  </form>
 </div>
 </body>
 </html>

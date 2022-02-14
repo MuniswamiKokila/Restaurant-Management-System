@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Restaurant</title>
+    <title>Booked</title>
     <style>
-        .navigation {
+         .navigation {
   overflow: hidden;
   background-color: #333;
   width:100%;
@@ -31,28 +31,19 @@
   background-color: #ff656c;
   color: white;
   }
-
-
-
     </style>
 </head>
 <body>
 <div class="navigation">
     <a href="#" class="active">Home</a>
-    <a th:href="@{/viewProfile}">View Profile</a>
+    <a th:href="@{/updateCustomerProfile}">Update Profile</a>
     <a href="/" style="float:right">Logout</a>
     <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
-    <a href="#" style="float:right" th:text="${userName}"></a>
+    <a class="active" href="#" style="float:right" th:text="${userName}"></a>
 </div>
 <br/>
-<h1>Welcome To Your Restaurant</h1>
-<div>
-    <button type="button"><a th:href="@{/dineIn}">DineIn</a></button>
-</div>
-<br/>
-<div>
-    <button><a th:href="@{/menu}">Order</a></button>
-</div>
+<h3>Congratulations! Your Table is Booked</h3>
+<h6>You can check your Table Number in My Bookings</h6>
 </body>
 </html>

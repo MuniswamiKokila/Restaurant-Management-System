@@ -8,19 +8,26 @@ import javax.persistence.Id;
 public class Customer {
     @Id
     private String userName;
+    @Column(nullable = false)
     private String name;
     @Column(unique = true)
     private String email;
+    @Column(nullable = false)
     private String password;
     @Column(unique = true)
-    private String mobileNumber;
+    private Long mobileNumber;
+    @Column(nullable = false)
+    private String address;
+    private String roles;
     public Customer(){}
-    public Customer(String userName,String name,String email,String password,String mobileNumber){
+    public Customer(String userName,String name,String email,String password,Long mobileNumber,String address,String roles){
+        this.address=address;
         this.userName=userName;
         this.name=name;
         this.email=email;
         this.password=password;
         this.mobileNumber=mobileNumber;
+        this.roles=roles;
     }
     public String getUserName() {
         return userName;
@@ -54,13 +61,26 @@ public class Customer {
         this.password = password;
     }
 
-    public String getMobileNumber() {
+    public Long getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(String mobileNumber) {
+    public void setMobileNumber(Long mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
+    public String getAddress() {
+        return address;
+    }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DineInShows</title>
+    <style>
+          .navigation {
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+    z-index:1;
+    top:0;
+    left:0;
+}
+
+.navigation a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navigation a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+.navigation a.active {
+  background-color: #ff656c;
+  color: white;
+  }
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    </style>
+</head>
+<body>
+<div class="navigation">
+    <a href="#" class="active">Home</a>
+    <a th:href="@{/updateCustomerProfile}">Update Profile</a>
+    <a href="/" style="float:right">Logout</a>
+    <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
+    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
+    <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+</div>
+<br/>
+<h4>Select Time On <span th:text="${date}"/> To Reserve</h4>
+<table>
+    <thead>
+    <tr>
+
+        <th>Timing</th>
+        <th>Book Table</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="show: ${shows}">
+        <td th:text="${show.time}"></td>
+        <td>
+            <button> <a class="btn btn-success" th:href="@{/{userName}/tables/{id} (userName=${userName},id=${show.id})}">Book Tables</a> </button>
+<!--            <button> <a th:href="@{/{userName}/booked/{id} (userName=${userName},id=${show.id})}">Book Table</a></button>-->
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

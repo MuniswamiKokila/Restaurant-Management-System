@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>View Profile</title>
+</head>
+<body>
+<div class="navigation">
+    <a th:href="@{/restaurant}">Home</a>
+    <a href="#" class="active" style="float:right">View Profile</a>
+    <a href="/" style="float:right">Logout</a>
+    <!--    <a class="nav-link" th:href="@{/{userName}/cart (userName=${userName})}"><span> My Cart </span></a>-->
+    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
+    <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+</div>
+
+<div>
+    <h3 align="center"><span th:text=" ${message}"/></h3>
+    <h1>Welcome &nbsp;<span th:text="${name}"/></h1>
+    <div class="px-4 mt-1">
+        <h3> Full Name: &nbsp;<span th:text="${name}"/> </h3>
+    </div>
+    <div>
+        <h3> User Name: &nbsp;<span th:text="${userName}"/> </h3>
+    </div>
+    <div>
+        <h3> Address: &nbsp;<span th:text="${address}"/> </h3>
+    </div>
+    <div>
+        <h3> Email Id: &nbsp;<span th:text="${email}"/> </h3>
+    </div>
+    <div>
+        <h3> Mobile Number: &nbsp;<span th:text="${mobileNumber}"/> </h3>
+    </div>
+    <div>
+       <button> <a th:href="@{/updateProfile}" class="btn">Update details</a></button>
+    </div>
+    <div>
+    <button><a href="@{/restaurant}">Cancel</a></button>
+    </div>
+</div>
+</body>
+</html>

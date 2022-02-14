@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DineIn Timing</title>
+    <style>
+        .navigation {
+  overflow: hidden;
+  background-color: #333;
+  width:100%;
+    z-index:1;
+    top:0;
+    left:0;
+}
+
+.navigation a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navigation a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+.navigation a.active {
+  background-color: #ff656c;
+  color: white;
+  }
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    </style>
+</head>
+<body>
+<div class="navigation">
+    <a href="/adminRestaurant" class="active">Home</a>
+    <a href="/viewDineIn">ViewDineIn</a>
+    <a href="/viewMenu">Deliver</a>
+    <a th:href="@{/viewUsersAccount}">Accounts</a>
+    <a class="active" href="#" style="float:right" th:text="${userName}"></a>
+    <a href="/" style="float:right">Logout</a>
+</div>
+<br/>
+<div>
+    <h3>DineIn Timing for <span th:text="${dineIn.date}"></span></h3>
+</div>
+<br/>
+<td>
+    <table>
+        <thead>
+        <tr>
+            <th>DineIn Time</th>
+            <th>View Tables</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="dineInShows: ${adminTime}">
+            <td th:text="${dineInShows.time}"></td>
+            <td><a th:href="@{/viewTables/{id} (id=${dineInShows.id})}">View Tables</a></td>
+            <td>
+                <a href="" th:href="@{/viewDineInTime/delete/{id} (id=${dineIn.id})}" >Delete</a></td>
+            </td>
+        </tr>
+        </tbody>
+    </table><br><br>
+    <td>
+        <!--    <button><a th:href="@{/addDineInTime/add/{id} (id=${dineIn.id})}" style="margin: 20px 0">Add Time</a></button>-->
+        <a class="btn btn-success" th:href="@{/addDineInTime/{id} (id=${dineIn.id})}">Add Time</a>
+    </td>
+    <button><a th:href="@{/viewDineIn}">Back</a></button>
+</div>
+</body>
+</html>

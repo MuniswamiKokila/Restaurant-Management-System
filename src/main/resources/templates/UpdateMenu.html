@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Restaurant</title>
+    <title>Add Menu</title>
     <style>
          .navigation {
   overflow: hidden;
@@ -41,11 +41,20 @@
     <a th:href="@{/viewUsersAccount}">Accounts</a>
     <a class="active" href="#" style="float:right" th:text="${userName}"></a>
     <a href="/" style="float:right">Logout</a>
-</div><br><br><br>
-<marquee direction="right"
-         behavior="alternate"
-         style="color:red">
-    <h1>WELCOME BACK ADMIN </h1></marquee>
+</div>
+<br/>
+<div>
+    <form  method="post" th:object="${menu}">
+        <div>
+            <label for="name">Dish Name</label>
+            <input type="text" required th:field="*{name}" name="name" id="name"  placeholder="Enter Dish Name">
+            <label for="price">Price of the Dish</label>
+            <input type="text" required th:field="*{price}" name="price" id="price" placeholder="Enter Dish Price">
+
+        </div>
+
+        <button type="submit">ADD</button>
+    </form>
 </div>
 </body>
 </html>
