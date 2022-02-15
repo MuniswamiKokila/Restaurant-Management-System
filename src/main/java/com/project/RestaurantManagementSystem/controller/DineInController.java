@@ -76,7 +76,7 @@ public class DineInController {
     }
 
 
-    @GetMapping("/{userName}/booked/{shows}")
+    @PostMapping("/{userName}/booked/{shows}")
     public String tableBooked(Principal principal,@PathVariable String userName,@PathVariable Long shows, HttpServletRequest request, Model model){
         if (principal != null) {
             String username = principal.getName();
@@ -87,12 +87,13 @@ public class DineInController {
         for(String table : bookedTable) {
             BookedTables bookedTables=bookedTableService.getByTablesAndDineInShowsId(table, shows);
             if (!(Objects.isNull(bookedTables))){
-                model.addAttribute("message",bookedTables + " Table is already booked. Please Choose another Table");
-                return "redirect:/tables";
+                model.addAttribute("message"," Table is already booked. Please Choose another Table");
+                return "tables";
             }
         }
         for (String table : bookedTable) {
-            Tables tables=tableService.getBySeats(table);
+            System.out.println(table);
+            Tables tables=tableService.getBySeats(table,shows);
             BookedTables bookedTables=new BookedTables(tables.getTables(),tables.getPrice());
             bookedTables.setDineInShows(dineInShowsService.getById(shows));
             bookedTables.setCustomer(customerService.findCustomerByUserName(userName));

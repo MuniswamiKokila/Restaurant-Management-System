@@ -18,7 +18,7 @@ public class Customer {
     private Long mobileNumber;
     @Column(nullable = false)
     private String address;
-    private String roles;
+    private String roles;//role
     public Customer(){}
     public Customer(String userName,String name,String email,String password,Long mobileNumber,String address,String roles){
         this.address=address;

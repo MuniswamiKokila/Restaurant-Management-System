@@ -53,9 +53,7 @@ tr:nth-child(even) {
 <div class="navigation">
     <a href="/restaurant">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
-    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
-    <a href="#" class="active" style="float:right" th:text="${userName}"></a>
+    <a href="#" class="active">My Bookings</a>
     <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>

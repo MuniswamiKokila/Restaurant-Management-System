@@ -74,9 +74,7 @@ button:hover {
 <div class="navigation">
     <a href="/restaurant" >Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a class="active" th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
-    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
-    <a href="#" style="float:right" th:text="${userName}"></a>
+    <a class="active" href="#">Cart</a>
     <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>
@@ -117,7 +115,7 @@ button:hover {
 
             document.getElementById("val").innerHTML = "Sum Value = " + sumVal;
             console.log(sumVal);
-        </script>
+</script>
 
 </body>
 </html>

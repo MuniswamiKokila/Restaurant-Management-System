@@ -74,7 +74,6 @@ button:hover {
 <div class="navigation">
     <a href="/restaurant" class="active">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" style="float:right" th:text="${userName}"></a>
     <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>

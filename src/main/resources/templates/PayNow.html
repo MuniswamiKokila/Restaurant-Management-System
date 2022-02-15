@@ -38,6 +38,8 @@
     background-repeat: no-repeat;
     background-size: cover;
     font-family: Montserrat;
+    background-attachment: fixed;
+
 }
     </style>
 </head>
@@ -46,11 +48,10 @@
     <a href="/restaurant">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
     <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
-    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" class="active" style="float:right" th:text="${userName}"></a>
     <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
-<h6 style="font-size:20px;color:red;text-align:center"><small><span th:text="${message}"></span></small></h6>
-<h1 style="color:red">Thank You for Ordering</h1>
+<h6 style="font-size:20px;color:green;text-align:center"><small><span th:text="${message}"></span></small></h6>
+<!--<h1 style="color:red">Thank You for Ordering</h1>-->
 </body>
 </html>

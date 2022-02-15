@@ -11,8 +11,13 @@ import java.util.List;
 public class TablesService {
     @Autowired
     private TablesRepository tablesRepository;
-    public Tables getBySeats(String table){
-        return tablesRepository.getByTables(table);
+    public Tables getBySeats(String table,Long show){
+        List<Tables> tables = tablesRepository.getByTables(table);
+        for(Tables t:tables) {
+            if (t.getDineInShows().getId() == show)
+                return t;
+        }
+        return null;
     }
 
     public List<Tables> showDetails(Long id) {

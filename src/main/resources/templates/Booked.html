@@ -32,20 +32,13 @@
   background-color: #ff656c;
   color: white;
   }
-  body {
-    background-image: url('reserved.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: Montserrat;
-}
+
     </style>
 </head>
 <body>
 <div class="navigation">
     <a href="#" class="active">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" style="float:right" th:text="${userName}"></a>
     <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>

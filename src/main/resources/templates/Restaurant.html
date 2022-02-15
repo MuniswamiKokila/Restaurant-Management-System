@@ -37,31 +37,30 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
 }
+  body {
+    background-image: url('rest.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Montserrat;
+    background-attachment: fixed;
+}
     </style>
 </head>
 <body>
 <div class="navigation">
     <a href="#" class="active">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
-    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
+<!--    <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>-->
+<!--    <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>-->
+    <a th:href="@{/dineIn}">DineIn</a>
+    <a th:href="@{/menu}">Order</a>
     <a href="#" style="float:right" th:text="${userName}"></a>
     <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>
-<h1>Welcome To Your Restaurant</h1>
-
-<div class="grid-container;height:100%;">
-    <button><a th:href="@{/dineIn}">DineIn</a></button>
-    <div class="grid-child purple" style="float:left;">
-
-        <img src="dine.png" style="width:45%">
-        <img src="order.png" style="width:44%">
-    </div>
-    <button><a th:href="@{/menu}">Order</a></button>
-
-
-</div>
+<marquee direction="right"
+        behavior="alternate"><h1 style="color:white;font-size:50px;"><b>Welcome To Your Restaurant</b></h1></marquee>
 
 
 </body>

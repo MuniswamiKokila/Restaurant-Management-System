@@ -48,7 +48,7 @@ public class AdminController {
         return "viewDineIn";
     }
 
-    @RequestMapping("/viewDineIn/add")
+    @RequestMapping("/viewDineIn/add")  //dineIn/view
     public String addDineInDate(Principal principal,Model model){
         if (principal != null) {
             String username = principal.getName();
