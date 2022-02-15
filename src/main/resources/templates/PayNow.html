@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Pay</title>
@@ -31,17 +32,25 @@
   background-color: #ff656c;
   color: white;
   }
+    body {
+    background-image: url('thank.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Montserrat;
+}
     </style>
 </head>
 <body>
 <div class="navigation">
     <a href="/restaurant">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a href="/" style="float:right">Logout</a>
     <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" class="active" style="float:right" th:text="${userName}"></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
-<span>Paid Successfully</span>
+<h6 style="font-size:20px;color:red;text-align:center"><small><span th:text="${message}"></span></small></h6>
+<h1 style="color:red">Thank You for Ordering</h1>
 </body>
 </html>

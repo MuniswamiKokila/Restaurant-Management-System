@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Cart</title>
@@ -46,23 +47,44 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+button {
+    margin-left:10px;
+    height: 40px;
+    background: #ff656c;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #e15960;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    display: inline-block
+    outline: none;
+    cursor: pointer;
+    justify-content: center;
+}
+
+button:hover {
+    background: #ff7b81;
+}
     </style>
 </head>
-<body>
+<body style="background-color:powderblue;">
 <div class="navigation">
     <a href="/restaurant" >Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a href="/" style="float:right">Logout</a>
     <a class="active" th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" style="float:right" th:text="${userName}"></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>
 <div>
     <h1>My Cart</h1>
 </div>
 <div>
-    <table align="center" >
+    <table align="center" id="table">
         <thead>
         <tr>
             <th>Dish Name</th>
@@ -75,13 +97,27 @@ tr:nth-child(even) {
         <tr th:each="cart: ${mycart}">
             <td th:text="${cart.food.name}"></td>
             <td th:text="${cart.food.price}"></td>
-            <td> <a th:href="@{/{userName}/cart/delete/{id} (id=${cart.id})}"> Delete</a></td>
+            <td> <button><a th:href="@{/{userName}/cart/delete/{id} (id=${cart.id})}"> Delete</a></button></td>
         </tr>
         </tbody>
     </table>
 </div>
-<div>
+<div style="text-align:center;">
+  <p>Total Cost <span id="val"></span></p>
     <button><a th:href="@{/checkout}">Pay Now</a></button>
 </div>
+<script>
+
+            var table = document.getElementById("table"), sumVal = 0;
+
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                sumVal = sumVal + parseInt(table.rows[i].cells[1].innerHTML);
+            }
+
+            document.getElementById("val").innerHTML = "Sum Value = " + sumVal;
+            console.log(sumVal);
+        </script>
+
 </body>
 </html>

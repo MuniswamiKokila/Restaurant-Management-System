@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>My Cart</title>
@@ -31,18 +32,25 @@
   background-color: #ff656c;
   color: white;
   }
+    body {
+    background-image: url('cart.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Montserrat;
+}
     </style>
 </head>
-<body>
+<body style="background">
 <div class="navigation">
     <a href="/restaurant">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a href="/" style="float:right">Logout</a>
     <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" class="active" style="float:right" th:text="${userName}"></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
-<h2>Added to My Cart</h2>
+<h2 style="color:green;">Added to My Cart</h2>
 <h4>Check Cart to Pay</h4>
 </body>
 </html>

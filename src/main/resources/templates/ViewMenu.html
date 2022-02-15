@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>View Menu</title>
@@ -46,15 +47,36 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+button {
+    margin-left:10px;
+    height: 40px;
+    background: #ff656c;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #e15960;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    display: inline-block
+    outline: none;
+    cursor: pointer;
+    justify-content: center;
+}
+
+button:hover {
+    background: #ff7b81;
+}
     </style>
 </head>
-<body>
+<body style="background-color:powderblue;">
 <div class="navigation">
     <a href="/adminRestaurant">Home</a>
     <a href="/viewDineIn">ViewDineIn</a>
     <a href="/viewMenu" class="active">Deliver</a>
     <a href="#" style="float:right" th:text="${userName}"></a>
-    <a href="/" style="float:right">Logout</a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>
 <div>
@@ -64,9 +86,9 @@ tr:nth-child(even) {
 <table>
     <thead>
     <tr>
-        <!--            <th scope="col">Hotel Id</th>-->
+
         <th>Dish Name</th>
-        <th>Dish Address</th>
+        <th>Dish Price</th>
         <th>Delete</th>
 
     </tr>
@@ -74,15 +96,15 @@ tr:nth-child(even) {
 
     <tbody>
     <tr th:each="food: ${adminmenu}">
-        <!--            <td th:text="${hotel.id}"></td>-->
+
         <td th:text="${food.name}"></td>
         <td th:text="${food.price}"></td>
-        <td><a href="" th:href="@{/viewMenu/delete/{id} (id=${food.id})}">Delete</a></td>
+        <td><button><a href="" th:href="@{/viewMenu/delete/{id} (id=${food.id})}">Delete</a></button></td>
     </tr>
     </tbody>
 </table>
-<div>
-     <a th:href="@{/updateMenu/add }">Add Menu</a>
+<div style="text-align:center;">
+    <button><a th:href="@{/updateMenu/add }">Add Menu</a></button>
 </div>
 
 </body>

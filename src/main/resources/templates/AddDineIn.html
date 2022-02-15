@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Add Dates</title>
@@ -30,27 +31,86 @@
 .navigation a.active {
   background-color: #ff656c;
   color: white;
-  }
+  }.login-block {
+    width: 320px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #ff656c;
+    margin: 0 auto;
+}
+
+.block h1 {
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.block input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 50px;
+    outline: none;
+}
+
+.block input:active, .block input:focus {
+    border: 1px solid #ff656c;
+}
+
+.block button {
+    margin-left:10px;
+    height: 40px;
+    background: #ff656c;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #e15960;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    display: inline-block
+    outline: none;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.block button:hover {
+    background: #ff7b81;
+}
     </style>
 </head>
-<body>
+<body style="background-color:powderblue;">
 <div class="navigation">
     <a href="/adminRestaurant">Home</a>
     <a href="/viewDineIn">ViewDineIn</a>
     <a href="/viewMenu">Deliver</a>
     <a class="active" href="#" style="float:right" th:text="${userName}"></a>
-    <a href="/" style="float:right">Logout</a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>
-<div class="container">
+
     <form th:action="@{/viewDineIn/add}" method="post" th:object="${dineIn}">
+        <div class="block">
+            <h1>Add Date</h1>
         <div>
             <Label>Enter a Date</Label>
             <input type="date" placeholder="Enter Date" th:field="*{date}" name="date" required/>
         </div>
-
+        <div style="text-align:center">
         <button type="submit" class="addbtn">ADD</button>
+        </div>
+        </div>
     </form>
-</div>
+
 </body>
 </html>

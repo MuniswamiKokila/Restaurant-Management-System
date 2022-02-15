@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.crypto.BadPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Arrays;
@@ -66,7 +64,7 @@ public class DineInController {
     }
 
 
-    @RequestMapping("/{userName}/booked/{shows}")
+    @RequestMapping("/booked")
     public String booked(Principal principal,@PathVariable String userName,@PathVariable Long shows,Model model){
         if (principal != null) {
             String username = principal.getName();
@@ -78,7 +76,7 @@ public class DineInController {
     }
 
 
-    @PostMapping("/{userName}/booked/{shows}")
+    @GetMapping("/{userName}/booked/{shows}")
     public String tableBooked(Principal principal,@PathVariable String userName,@PathVariable Long shows, HttpServletRequest request, Model model){
         if (principal != null) {
             String username = principal.getName();
@@ -90,7 +88,7 @@ public class DineInController {
             BookedTables bookedTables=bookedTableService.getByTablesAndDineInShowsId(table, shows);
             if (!(Objects.isNull(bookedTables))){
                 model.addAttribute("message",bookedTables + " Table is already booked. Please Choose another Table");
-                return "tables";
+                return "redirect:/tables";
             }
         }
         for (String table : bookedTable) {
@@ -109,7 +107,7 @@ public class DineInController {
         return "booked";
     }
 
-    @RequestMapping("/{userName}/myBookings")
+    @GetMapping("/{userName}/myBookings")
     public String myBookings(Principal principal,@PathVariable String userName, Model model){
         if (principal != null) {
             String username = principal.getName();

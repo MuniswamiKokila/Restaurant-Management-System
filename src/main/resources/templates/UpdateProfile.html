@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Update Details</title>
@@ -109,14 +110,14 @@
 }
     </style>
 </head>
-<body>
+<body style="background-color:powderblue;">
 <div class="navigation">
     <a href="/restaurant">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a href="/" style="float:right">Logout</a>
     <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" class="active" style="float:right" th:text="${userName}"></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>
 
@@ -138,7 +139,7 @@
             <label><b>Address</b></label><br>
             <input type="text" placeholder="Enter Address" name="address" th:value="${customer.address}">
             <button>Update</button>
-            <input type="reset" value="Reset" align="center">
+
 <!--            <button type="button" class="cancelButton" onclick="/restaurant">Cancel</button><br/><br/>-->
         </div>
     </form>

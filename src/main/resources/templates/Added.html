@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Added</title>
@@ -37,10 +38,10 @@
 <div class="navigation">
     <a href="/restaurant">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a href="/" style="float:right">Logout</a>
     <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" style="float:right" th:text="${userName}"></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <h2 style="color:red;">Added to Cart</h2>
 </body>

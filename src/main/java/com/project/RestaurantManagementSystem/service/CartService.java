@@ -25,4 +25,8 @@ public class CartService {
         cartRepository.deleteById(id);
     }
 
+    public void delete(){
+        cartRepository.deleteAll();
+    }
+
 }

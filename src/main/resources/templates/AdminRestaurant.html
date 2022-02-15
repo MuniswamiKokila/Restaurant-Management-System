@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Admin Restaurant</title>
@@ -31,6 +32,15 @@
   background-color: #ff656c;
   color: white;
   }
+  body {
+    background-image: url('restaurant.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Montserrat;
+    background-attachment: fixed;
+}
+
     </style>
 </head>
 <body>
@@ -39,7 +49,7 @@
     <a href="/viewDineIn">ViewDineIn</a>
     <a href="/viewMenu">Deliver</a>
     <a href="#" style="float:right" th:text="${userName}"></a>
-    <a href="/" style="float:right">Logout</a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div><br><br><br>
 <marquee direction="right"
          behavior="alternate"

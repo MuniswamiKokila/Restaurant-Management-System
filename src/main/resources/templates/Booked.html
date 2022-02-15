@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Booked</title>
@@ -31,19 +32,26 @@
   background-color: #ff656c;
   color: white;
   }
+  body {
+    background-image: url('reserved.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Montserrat;
+}
     </style>
 </head>
 <body>
 <div class="navigation">
     <a href="#" class="active">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a href="/" style="float:right">Logout</a>
     <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" style="float:right" th:text="${userName}"></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>
-<h3>Congratulations! Your Table is Booked</h3>
-<h6>You can check your Table Number in My Bookings</h6>
+<h2 style="color:red;">Congratulations! Your Table is Booked</h2>
+<h4>You can check your Table Number in My Bookings</h4>
 </body>
 </html>

@@ -49,9 +49,8 @@ public class OrderController {
         cart.setFood(food);
         cart.setCustomer(customer);
         cartService.addToCart(cart);
-//        model.addAttribute("cart.food.name",cart.getFood().getName());
         model.addAttribute("mycart",cartService.myCart(userName));
-        return "Added";
+        return "myCart";
     }
 
     @GetMapping("/{userName}/cart")
@@ -80,9 +79,10 @@ public class OrderController {
         if (principal != null) {
             String username = principal.getName();
             model.addAttribute("userName", username);
+            model.addAttribute("message","Payment Successful");
+            cartService.delete();
         }
         return "payNow";
-
     }
 
 }

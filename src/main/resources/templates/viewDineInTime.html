@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>DineIn Timing</title>
@@ -46,15 +47,36 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+button {
+    margin-left:10px;
+    height: 40px;
+    background: #ff656c;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #e15960;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    display: inline-block
+    outline: none;
+    cursor: pointer;
+
+}
+
+button:hover {
+    background: #ff7b81;
+}
     </style>
 </head>
-<body>
+<body style="background-color:powderblue;">
 <div class="navigation">
     <a href="/adminRestaurant">Home</a>
     <a href="/viewDineIn">ViewDineIn</a>
     <a href="/viewMenu">Deliver</a>
     <a class="active" href="#" style="float:right" th:text="${userName}"></a>
-    <a href="/" style="float:right">Logout</a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>
 <div>
@@ -74,17 +96,20 @@ tr:nth-child(even) {
         <tbody>
         <tr th:each="dineInShows: ${adminTime}">
             <td th:text="${dineInShows.time}"></td>
-            <td><a th:href="@{/viewTables/{id} (id=${dineInShows.id})}">View Tables</a></td>
+            <td><button><a th:href="@{/viewTables/{id} (id=${dineInShows.id})}">View Tables</a></button></td>
             <td>
-                <a href="" th:href="@{/viewDineInTime/delete/{id} (id=${dineInShows.id})}" >Delete</a></td>
+                <button><a href="" th:href="@{/viewDineInTime/delete/{id} (id=${dineInShows.id})}" >Delete</a></button>
             </td>
         </tr>
         </tbody>
     </table><br><br>
-    <td>
+    <div style="text-align:center;">
         <!--    <button><a th:href="@{/addDineInTime/add/{id} (id=${dineIn.id})}" style="margin: 20px 0">Add Time</a></button>-->
-        <a class="btn btn-success" th:href="@{/addDineInTime/{id} (id=${dineIn.id})}">Add Time</a>
-    </td>
+        <button><a th:href="@{/addDineInTime/{id} (id=${dineIn.id})}">Add Time</a></button>
+    </div>
+<br/>
+<br/>
+<div style="text-align:center;">
     <button><a th:href="@{/viewDineIn}">Back</a></button>
 </div>
 </body>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Restaurant</title>
@@ -31,28 +32,37 @@
   background-color: #ff656c;
   color: white;
   }
-
-
-
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
     </style>
 </head>
 <body>
 <div class="navigation">
     <a href="#" class="active">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
-    <a href="/" style="float:right">Logout</a>
     <a th:href="@{/{userName}/cart (userName=${userName})}">Cart</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" style="float:right" th:text="${userName}"></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="float:right">Logout</a>
 </div>
 <br/>
 <h1>Welcome To Your Restaurant</h1>
-<div>
-    <button type="button"><a th:href="@{/dineIn}">DineIn</a></button>
-</div>
-<br/>
-<div>
+
+<div class="grid-container;height:100%;">
+    <button><a th:href="@{/dineIn}">DineIn</a></button>
+    <div class="grid-child purple" style="float:left;">
+
+        <img src="dine.png" style="width:45%">
+        <img src="order.png" style="width:44%">
+    </div>
     <button><a th:href="@{/menu}">Order</a></button>
+
+
 </div>
+
+
 </body>
 </html>
