@@ -72,7 +72,7 @@ button:hover {
 <body style="background-color:powderblue;">
 
 <div class="navigation">
-    <a href="/restaurant" class="active">Home</a>
+    <a href="/restaurant">Home</a>
     <a th:href="@{/viewProfile}">View Profile</a>
     <a th:href="@{/{userName}/myBookings (userName=${userName})}">My Bookings</a>
     <a href="#" style="float:right" th:text="${userName}"></a>

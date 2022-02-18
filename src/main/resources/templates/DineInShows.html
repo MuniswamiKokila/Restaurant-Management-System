@@ -92,10 +92,13 @@ button:hover {
         <td th:text="${show.time}"></td>
         <td>
             <button> <a th:href="@{/{userName}/tables/{id} (userName=${userName},id=${show.id})}">Book Tables</a> </button>
-<!--            <button> <a th:href="@{/{userName}/booked/{id} (userName=${userName},id=${show.id})}">Book Table</a></button>-->
         </td>
     </tr>
     </tbody>
 </table>
+<br/>
+<div style="text-align:center">
+    <button><a th:href="@{/dineIn}">Cancel</a></button>
+</div>
 </body>
 </html>

@@ -24,7 +24,7 @@ public class OrderController {
     private CustomerService customerService;
     @Autowired
     private CartService cartService;
-    //    USER TAKEAWAY
+    //    USER ORDER
 
     @RequestMapping("/menu")
     public String viewMenu(Principal principal,Model model) {

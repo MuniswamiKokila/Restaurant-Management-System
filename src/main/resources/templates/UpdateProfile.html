@@ -135,7 +135,7 @@
             <label><b>Email</b></label><br>
             <input type="email" placeholder="Email" name="email" th:value="${customer.email}" readonly/>
             <label><b>Mobile Number</b></label><br>
-            <input type="number" placeholder="Enter Mobile Number" name="mobileNumber" th:value="${customer.mobileNumber}"/>
+            <input type="number" placeholder="Enter Mobile Number" pattern="^\d{10}$" name="mobileNumber" th:value="${customer.mobileNumber}"/>
             <label><b>Address</b></label><br>
             <input type="text" placeholder="Enter Address" name="address" th:value="${customer.address}">
             <button>Update</button>

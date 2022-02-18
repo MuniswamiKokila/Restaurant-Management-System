@@ -97,7 +97,6 @@ public class AdminController {
             String username = principal.getName();
             model.addAttribute("userName", username);
         }
-//        model.addAttribute("dineIn",id);
         dineInShowsService.addDineInShows(shows);
         return "redirect:/viewDineIn";
     }
@@ -109,7 +108,6 @@ public class AdminController {
             String username = principal.getName();
             model.addAttribute("userName", username);
         }
-//        model.addAttribute("dineIn",dineInService.getByDineInId(id));
         Tables tables=new Tables();
         tables.setDineInShows(dineInShowsService.getById(id));
         model.addAttribute("dineInShows",dineInShowsService.getById(id));
@@ -165,8 +163,6 @@ public class AdminController {
             model.addAttribute("userName", username);
         }
         tablesService.removeTablesById(id);
-//        dineInShowsService.removeDineInTimeById(id);
-//        dineInService.removeDineInById(id);
         return "redirect:/viewDineIn";
     }
 
@@ -177,7 +173,7 @@ public class AdminController {
 
 
     
-//    ADMIN TAKEAWAY
+//    ADMIN ORDER
 
     @GetMapping("/viewMenu")
     public String viewMenu(Principal principal,HttpServletRequest request, Model model) {

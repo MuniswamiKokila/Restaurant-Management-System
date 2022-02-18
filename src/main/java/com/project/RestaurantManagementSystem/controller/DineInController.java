@@ -75,7 +75,6 @@ public class DineInController {
         return "booked";
     }
 
-
     @PostMapping("/{userName}/booked/{shows}")
     public String tableBooked(Principal principal,@PathVariable String userName,@PathVariable Long shows, HttpServletRequest request, Model model){
         if (principal != null) {
